@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ProductCompare"
+  id="myeclipse.1394628117373"
+  context-root="/ProductCompare"
+  j2ee-spec="6.0"
+  archive="ProductCompare.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
