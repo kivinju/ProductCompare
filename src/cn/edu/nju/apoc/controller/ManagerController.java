@@ -68,10 +68,10 @@ public class ManagerController {
 	}
 	/**
 	 * 
-	 * @author kivin
+	 * @author zhouhaibing
 	 */
-	@RequestMapping("advermanage")
-	public String adverManage() {
+	@RequestMapping("crawlermanage")
+	public String crawlerManage() {
 		return null;
 	}
 }
