@@ -10,14 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * @creator kivin
- * @author zongyanqi
- *
- */
-
 @WebFilter(urlPatterns="/*")
-public class IpDetector implements Filter{
+public class TestFilter implements Filter{
 
 	@Override
 	public void destroy() {
@@ -26,14 +20,15 @@ public class IpDetector implements Filter{
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest arg0, ServletResponse arg1,
+			FilterChain arg2) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		chain.doFilter(request, response);
+		System.out.println("================filter==================");
+		arg2.doFilter(arg0, arg1);
 	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
 		
 	}
