@@ -23,4 +23,13 @@ public class TestController {
 		model.addAttribute("aa", products.getName());
 		return "test";
 	}
+	
+	@RequestMapping("zongyanqi/haha")
+	public String test2(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session){
+		int ai=request.getContentLength();
+		model.addAttribute("temp", ai);
+		model.addAttribute("iplist", testService.getAllIps());
+		return "zongyanqi/test";
+	}
+	
 }
