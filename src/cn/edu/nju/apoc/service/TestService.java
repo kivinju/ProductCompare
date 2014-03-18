@@ -1,18 +1,31 @@
 package cn.edu.nju.apoc.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.edu.nju.apoc.dao.BlackIpsDAO;
 import cn.edu.nju.apoc.dao.ProductsDAO;
+import cn.edu.nju.apoc.entity.BlackIps;
 import cn.edu.nju.apoc.entity.Products;
 
 @Service
 public class TestService {
 	@Resource
 	ProductsDAO productsDAO;
+	@Resource
+	BlackIpsDAO blackIpsDAO;
 	
 	public Products getProduct() {
 		return (Products) productsDAO.findAll().get(0);
+	}
+	public List<BlackIps> getAllIps() {
+		List<BlackIps> list=new ArrayList<BlackIps>();
+		list.add(new BlackIps("hsdkfhsdkjfhskjf"));
+		list.add(new BlackIps("hsdkfhsdkjfhskjfdsfasufhksahf"));
+		return list;
 	}
 }

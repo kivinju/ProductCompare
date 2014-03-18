@@ -109,7 +109,8 @@ xmlns:tx="http://www.springframework.org/schema/tx"
 	<!-- 静态资源访问 -->
 	 <mvc:resources location="/img/" mapping="/img/**"/>  	
 	 <mvc:resources location="/js/" mapping="/js/**"/>   
-	 <mvc:resources location="/css/" mapping="/css/**"/>   
+	 <mvc:resources location="/css/" mapping="/css/**"/>  
+	 <mvc:resources location="/jsp/" mapping="/jsp/**"/>   
 	
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
