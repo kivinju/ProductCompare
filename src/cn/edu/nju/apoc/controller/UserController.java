@@ -13,26 +13,6 @@ public class UserController {
 	
 	/**
 	 * 
-	 * @author yanning
-	 * add Synonyms detector when searching!
-	 * add cache for the frequent requests for search!
-	 */
-	@RequestMapping("search")
-	public String searchProduct() {
-		return null;
-	}
-	
-	/**
-	 * 
-	 * @author yanning
-	 * show info of a object!
-	 */
-	@RequestMapping("info")
-	public String infoProduct() {
-		return null;
-	}
-	/**
-	 * 
 	 * @author xunan
 	 */
 	@RequestMapping("comment")

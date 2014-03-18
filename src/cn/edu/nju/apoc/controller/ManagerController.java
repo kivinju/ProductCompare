@@ -25,19 +25,7 @@ public class ManagerController {
 		
 		return null;
 	}
-	/**
-	 * 
-	 * @author yanning
-	 * manage synonyms in database
-	 */
-	@RequestMapping("synmanage")
-	public String synonymManage() {
-		return null;
-	}
-	/**
-	 * 
-	 * @author xunan
-	 */
+	
 	@RequestMapping("sensmanage")
 	public String sensitiveWordManage() {
 		return null;
