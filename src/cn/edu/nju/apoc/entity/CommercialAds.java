@@ -1,5 +1,7 @@
 package cn.edu.nju.apoc.entity;
 
+import java.io.FileInputStream;
+
 /**
  * CommercialAds entity. @author MyEclipse Persistence Tools
  */
@@ -13,8 +15,8 @@ public class CommercialAds extends AbstractCommercialAds implements
 	}
 
 	/** full constructor */
-	public CommercialAds(Integer money, String content, String url) {
+	public CommercialAds(Integer money, FileInputStream content, String url) {
 		super(money, content, url);
 	}
-
+	
 }
