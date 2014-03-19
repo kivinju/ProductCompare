@@ -13,7 +13,7 @@
         <property name="money" type="java.lang.Integer">
             <column name="money" not-null="true" />
         </property>
-        <property name="content" type="java.lang.String">
+        <property name="content" type="java.io.FileInputStream">
             <column name="content" not-null="true" />
         </property>
         <property name="url" type="java.lang.String">
