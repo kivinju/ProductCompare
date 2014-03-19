@@ -16,6 +16,21 @@ public class SearchProductService {
 	ProductsDAO productsDao;
 	
 	public List<Products> searchProduct(ArrayList<String> searchKey){
-		return null;
+//		stub
+		List<Products> stub=new ArrayList<Products>();
+		stub.add(new Products("Nike", 798, "www.taobao.com", null));
+		stub.add(new Products("Eland", 1290, "www.amazon.com", null));
+		return stub;
+		
+//		List<Products> result=new ArrayList<Products>();
+//		for(String key:searchKey){
+//			List<Products> tmp=productsDao.findByName(key);
+//			if(tmp!=null){
+//				for(Products p:tmp)
+//					result.add(p);
+//			}
+//			
+//		}
+//		return result;
 	}
 }

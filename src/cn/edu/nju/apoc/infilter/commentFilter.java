@@ -15,8 +15,8 @@ import javax.servlet.annotation.WebFilter;
  * @author xunan
  *	there works:
  *	1,sensitive words 
- *	2,Ë®¾ü
- *	3,Õë¶ÔÉÌ¼Ò¸ÐÐËÈ¤µÄ¹Ø¼ü´Ê¼ì²â
+ *	2,Ë®ï¿½ï¿½
+ *	3,ï¿½ï¿½ï¿½ï¿½Ì¼Ò¸ï¿½ï¿½ï¿½È¤ï¿½Ä¹Ø¼ï¿½Ê¼ï¿½ï¿½
  */
 @WebFilter("/user/comment")
 public class commentFilter implements Filter{
@@ -31,7 +31,7 @@ public class commentFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+		chain.doFilter(request, response);
 	}
 
 	@Override
