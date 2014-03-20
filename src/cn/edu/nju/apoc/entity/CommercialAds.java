@@ -15,7 +15,7 @@ public class CommercialAds extends AbstractCommercialAds implements
 	}
 
 	/** full constructor */
-	public CommercialAds(Integer money, FileInputStream content, String url) {
+	public CommercialAds(Integer money, byte[] content, String url) {
 		super(money, content, url);
 	}
 	

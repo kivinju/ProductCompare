@@ -24,6 +24,20 @@ public class TestController {
 		return "test";
 	}
 	
+	@RequestMapping("add_img")
+	public String testAddImg(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
+		testService.addAds();
+		System.out.println("Add");
+		return "test";
+	}
+	
+	@RequestMapping("load_img")
+	public String testLoadImg(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
+		testService.loadAds();
+		System.out.println("Load");
+		return "test";
+	}
+	
 	@RequestMapping("zongyanqi/haha")
 	public String test2(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session){
 		int ai=request.getContentLength();

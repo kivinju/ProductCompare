@@ -1,7 +1,5 @@
 package cn.edu.nju.apoc.entity;
 
-import java.io.FileInputStream;
-
 /**
  * AbstractCommercialAds entity provides the base persistence definition of the
  * CommercialAds entity. @author MyEclipse Persistence Tools
@@ -13,7 +11,7 @@ public abstract class AbstractCommercialAds implements java.io.Serializable {
 
 	private Integer adid;
 	private Integer money;
-	private FileInputStream content;
+	private byte[] content;
 	private String url;
 
 	// Constructors
@@ -23,7 +21,7 @@ public abstract class AbstractCommercialAds implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractCommercialAds(Integer money, FileInputStream content, String url) {
+	public AbstractCommercialAds(Integer money, byte[] content, String url) {
 		this.money = money;
 		this.content = content;
 		this.url = url;
@@ -47,11 +45,11 @@ public abstract class AbstractCommercialAds implements java.io.Serializable {
 		this.money = money;
 	}
 
-	public FileInputStream getContent() {
+	public byte[] getContent() {
 		return this.content;
 	}
 
-	public void setContent(FileInputStream content) {
+	public void setContent(byte[] content) {
 		this.content = content;
 	}
 

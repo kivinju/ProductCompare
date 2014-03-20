@@ -30,13 +30,14 @@ public class TestFilter implements Filter{
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("================filter==================");
-		//RequestDispatcher dispatcher = new RequestDispatcherRegistryImpl(orb, defaultId)
-//		((HttpServletResponse)arg1).sendRedirect("");
-//		HttpServletRequest request=((HttpServletRequest)arg0);
-//		RequestDispatcher requestDispatcher=request.getRequestDispatcher("/jsp/test.jsp");
-//		requestDispatcher.forward(arg0, arg1);
+//		System.out.println("================filter==================");
+//		//RequestDispatcher dispatcher = new RequestDispatcherRegistryImpl(orb, defaultId)
+////		((HttpServletResponse)arg1).sendRedirect("");
+////		HttpServletRequest request=((HttpServletRequest)arg0);
+////		RequestDispatcher requestDispatcher=request.getRequestDispatcher("/jsp/test.jsp");
+////		requestDispatcher.forward(arg0, arg1);
 		arg2.doFilter(arg0, arg1);
+		
 	}
 
 	@Override
