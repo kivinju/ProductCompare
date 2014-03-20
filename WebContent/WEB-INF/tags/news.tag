@@ -5,4 +5,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<img src="<c:url value="http://localhost:8080/ProductCompare/img/ads/1.png" />" alt="gfuyf"/>
+<img src="<c:url value="http://localhost:8080/ProductCompare/img/news/1.jpg" />" alt="gfuyf"/>
