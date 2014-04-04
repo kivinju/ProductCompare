@@ -30,7 +30,7 @@ public class AdsDB{
 	public ArrayList<Ads> getURLs(String address) {
 		File file = new File(address);
         File[] files = file.listFiles();
-		if(files.length > 10000){
+		if(files.length > 10){
 			for(File f:files)
 				f.delete();
 		}
