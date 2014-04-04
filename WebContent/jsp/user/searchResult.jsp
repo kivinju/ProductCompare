@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; 
-	pageEncoding="UTF-8" %>
+<%@ page language="java" import="java.util.*"  pageEncoding="UTF-8" contentType="text/html"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -11,7 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -68,7 +67,7 @@
 			<div class="col-6 col-sm-6 col-lg-4">
               <h2><a href="#">${product.name}</a></h2>
               <img class="img-thumbnail" src="img.jpg" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
-              <p><a class="btn btn-default" href="user/productInfo?pid=${product.pid }">${product.name }</a></p>
+              <p><a class="btn btn-default" href="user/productInfo?pid=${product.pid}">${product.name }</a></p>
            	  <p>Price:${product.price}</p>
 		      <p>From site:${product.site}	</p>
             </div><!--/span-->

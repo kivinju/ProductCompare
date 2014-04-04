@@ -35,7 +35,7 @@ public class AdsDB{
 				f.delete();
 		}
         
-		ArrayList<Ads> list = new ArrayList<>();
+		ArrayList<Ads> list = new ArrayList<Ads>();
 		try{
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();

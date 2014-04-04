@@ -54,8 +54,9 @@ public class SearchProductController {
 		String pid = request.getParameter("pid");
 		List<Products> products;
 		if(pid!=null){
-			products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
-			model.addAttribute("products", products);
+			System.out.println(""+request.getParameter("pid"));
+			//products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
+			//model.addAttribute("products", products);
 			return "products/productInfo";
 		}
 		else{
