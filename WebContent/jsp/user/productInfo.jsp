@@ -24,24 +24,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	同名：
-  	<table>
-  		<tr>
+  	同名商品：
+  	<div>
+  		<div class="col-10 ">
 		  	<c:forEach var="product" items="${products}">
-		  		<td>
+		  		<p>
 		  			${product.name}
-		  		</td>
+		  		</p>
+		  		<p>
+		  			${product.price }
+		  		</p>
+		  		<p>
+		  			${product.site }
+		  		</p>
+		  		<p>
+		  			${product.img }
+		  		</p>
+		  		<c:forEach var="comment" items="${product.comments }">
+		  			<p>${comment }</p>
+		  		</c:forEach>
+		  		
+		  		<form action="user/comment?pid=${product.pid}">
+  					Comment:<input type="text" value="name">
+  					<input type="submit" value="submit">
+  				</form>
 		  	</c:forEach>
-	  	</tr>
-  	</table>
-  	<form action="user/comment">
-  		comment:<input type="text" value="name">
-  		<input type="submit" value="submit">
-  	</form>
-  	<ul>
-  	<c:forEach var="comment" items="comments">
-  		<li>${comment.comments }</li>
-  	</c:forEach>
-  	</ul>
+	  	</div>
+  	</div>
+  	
   </body>
 </html>

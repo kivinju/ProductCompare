@@ -1,7 +1,9 @@
 package cn.edu.nju.apoc.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -18,8 +20,14 @@ public class SearchProductService {
 	public List<Products> searchProduct(String[] searchKey){
 //		stub
 		List<Products> stub=new ArrayList<Products>();
-		stub.add(new Products("Nike", 798, "www.taobao.com", null));
-		stub.add(new Products("Eland", 1290, "www.amazon.com", null));
+		Set bidding = new HashSet();
+		bidding.add("100");
+		Set comments = new HashSet();
+		comments.add("Good~");
+		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
+		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
+		stub.add(p1);
+		stub.add(p2);
 		return stub;
 		
 //		List<Products> result=new ArrayList<Products>();
@@ -37,8 +45,15 @@ public class SearchProductService {
 	public List<Products> searchProduct(){
 //		stub
 		List<Products> stub=new ArrayList<Products>();
-		stub.add(new Products("Nike", 798, "www.taobao.com", null));
-		stub.add(new Products("Eland", 1290, "www.amazon.com", null));
+		Set bidding = new HashSet();
+		bidding.add("100");
+		Set comments = new HashSet();
+		comments.add("Good~");
+		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
+		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
+		stub.add(p1);
+		stub.add(p2);
+		
 		return stub;
 		
 //		List<Products> result=new ArrayList<Products>();

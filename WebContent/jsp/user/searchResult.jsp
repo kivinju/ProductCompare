@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-	pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; 
+	pageEncoding="UTF-8" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

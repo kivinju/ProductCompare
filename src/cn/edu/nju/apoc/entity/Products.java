@@ -20,8 +20,8 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 
 	/** full constructor */
 	public Products(String name, Integer price, String site, String img,
-			Set biddings, Set commentses) {
-		super(name, price, site, img, biddings, commentses);
+			Set biddings, Set comments) {
+		super(name, price, site, img, biddings, comments);
 	}
 
 }
