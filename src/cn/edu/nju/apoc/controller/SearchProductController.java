@@ -31,7 +31,8 @@ public class SearchProductController {
 	@RequestMapping("search")
 	public String searchProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
 		
-		String searchString = request.getAttribute("searchString").toString();
+		String searchString = (String)request.getAttribute("searchString");
+		
 		String[] searchList = null;
 		List<Products> plist = productService.searchProduct();
 		if(searchString!=null&&!searchString.equals("")){
