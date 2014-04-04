@@ -27,9 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	同名：
   	<table>
   		<tr>
-		  	<c:forEach var="product" items="${productlist }">
+		  	<c:forEach var="product" items="${products}">
 		  		<td>
-		  			${product.name }
+		  			${product.name}
 		  		</td>
 		  	</c:forEach>
 	  	</tr>

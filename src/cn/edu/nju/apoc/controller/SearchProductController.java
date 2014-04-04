@@ -1,5 +1,6 @@
 package cn.edu.nju.apoc.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,31 +20,47 @@ import cn.edu.nju.apoc.service.SearchProductService;
 @RequestMapping("user/")
 public class SearchProductController {
 	@Resource
-	SearchProductService searchProductService;
+	SearchProductService productService;
 	
 	/**
 	 * 
-	 * @author yanning
+	 * @author yanning + ss
 	 * add Synonyms detector when searching!
 	 * add cache for the frequent requests for search!
 	 */
 	@RequestMapping("search")
 	public String searchProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
-		ArrayList<String> searchKeys=(ArrayList<String>) session.getAttribute("searchKeys");
 		
-		List<Products> products = searchProductService.searchProduct(searchKeys);
-		model.addAttribute("products", products);
-		return "products/searchResult";
+		String searchString = request.getAttribute("searchString").toString();
+		String[] searchList = null;
+		List<Products> plist = productService.searchProduct();
+		if(searchString!=null&&!searchString.equals("")){
+			searchList = searchString.split(";");
+			plist = productService.searchProduct(searchList);
+		}
+		model.addAttribute("products", plist);
+		return "user/searchResult";
 	}
 	
 	/**
 	 * 
 	 * @author yanning
 	 * show info of a object!
+	 * @throws IOException 
 	 */
-	@RequestMapping("searchResult")
-	public String infoProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
-		model.addAttribute("thisProduct", (Products)session.getAttribute("thisProduct"));
-		return "products/detailProduct";
+	@RequestMapping("productInfo")
+	public String infoProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) throws IOException {
+		String pid = request.getParameter("pid");
+		List<Products> products;
+		if(pid!=null){
+			products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
+			model.addAttribute("products", products);
+			return "products/productInfo";
+		}
+		else{
+			response.sendRedirect("search");
+			return null;
+		}
+		
 	}
 }

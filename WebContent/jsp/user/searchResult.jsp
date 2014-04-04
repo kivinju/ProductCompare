@@ -50,34 +50,34 @@
 	<div class="container">
 
 		<div class="row">
+		
+		<form  name="searchform" action="user/search" >
 			<div class="col-md-8"></div>
 			<div class="col-md-2">
-				<input type="text" class="form-control" placeholder="Search"
+				<input type="text" name="searchString" class="form-control" placeholder="Search"
 					autofocus>
 			</div>
 			<div class="col-md-1">
-				<button type="button" class="btn btn-primary btn-sm">Search</button>
+				<button type="submit" class="btn btn-primary btn-sm">Search</button>
 			</div>
 
-
-
+		</form>>
 		</div>
 		<div class="row">
 		<c:forEach var="product" items="${products}">
 			<div class="col-6 col-sm-6 col-lg-4">
               <h2><a href="#">${product.name}</a></h2>
               <img class="img-thumbnail" src="img.jpg" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
-              <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+              <p><a class="btn btn-default" href="user/productInfo?pid=${product.pid }">${product.name }</a></p>
+           	  <p>Price:${product.price}</p>
+		      <p>From site:${product.site}	</p>
             </div><!--/span-->
-            </c:forEach>
+           </c:forEach>
 		</div>
 		<!--/row-->
 	</div>
 	<!-- /.container -->
 	
-	
 
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
