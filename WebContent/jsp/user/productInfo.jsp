@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		</c:forEach>
 		  		
 		  		<form action="user/comment?pid=${product.pid}">
-  					Comment:<input type="text" value="name">
+  					Comment:<textarea type="text" value="name"></textarea>
   					<input type="submit" value="submit">
   				</form>
 		  	</c:forEach>

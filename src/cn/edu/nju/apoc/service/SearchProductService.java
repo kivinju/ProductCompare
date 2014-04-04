@@ -78,4 +78,11 @@ public class SearchProductService {
 		return plist;
 	}
 	
+	public void addComment(int pid,String comment){
+		Products p= productsDao.findById(pid);
+		Set comments = p.getCommentses();
+		comments.add(comment);
+		productsDao.save(p);
+	}
+	
 }
