@@ -50,14 +50,15 @@ public class adverFilter implements Filter{
 			if (resWrapper.getContentType().startsWith("text/html")) {
 				Document document = Jsoup.parse(resBody);
 				Element head = document.select("head").first();
-				head.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/news.css\"/>");
+				head.append("<link  href=\"css/news.css\" rel=\"stylesheet\"/>");
 				
 				Element body = document.select("body").first();
 				@SuppressWarnings("deprecation")
 				ArrayList<Ads> list= db.getURLs(request.getRealPath("img/news"));
-				for(Ads ad:list){
-					body.append("<a href=\"" + ad.getUrl() + "\"><img class=\"left\" src=\"" + ad.getUri() + "\" /></a>");
-				}
+				
+				body.append("<a href=\"" + list.get(0).getUrl() + "\"><img class=\"newsleft\" src=\"" + list.get(0).getUri() + "\" /></a>");
+				body.append("<a href=\"" + list.get(1).getUrl() + "\"><img class=\"newsright\" src=\"" + list.get(1).getUri() + "\" /></a>");
+				
 				resBody = document.html();
 				response.setContentLength(resBody.length());
 			}
