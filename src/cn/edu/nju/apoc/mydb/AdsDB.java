@@ -55,10 +55,13 @@ public class AdsDB{
 						String uri = address + "/" + name;
 						new ImageIO().imwrite(uri, image);
 						list.add(new Ads(url, "img/news/"+name));
-						db.closeResultset(r);
-						db.closeStatement(s);
 					}
+					db.closeResultset(r);
+					db.closeStatement(s);
 				}
+			}else{
+				db.closeResultset(rs);
+				db.closeStatement(stmt);
 			}
 			
 			db.closeConnection(con);
