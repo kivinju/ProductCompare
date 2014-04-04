@@ -99,8 +99,7 @@ xmlns:tx="http://www.springframework.org/schema/tx"
 		</property>
 	</bean>
 
-	
-	 <!-- 注解扫描包 -->
+	<!-- 注解扫描包 -->
 	<context:component-scan base-package="cn.edu.nju.apoc" />
 	<!-- 开启注解 -->
 	

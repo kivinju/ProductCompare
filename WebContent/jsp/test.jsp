@@ -3,7 +3,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 	  
   <body>
-  	<tags:news />
   	${aa }
   <hr />
   <h1> This is my JSP page. </h1> <br>

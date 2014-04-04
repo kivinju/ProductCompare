@@ -2,6 +2,7 @@ package cn.edu.nju.apoc.outfilter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,6 +14,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import cn.edu.nju.apoc.entity.Ads;
+import cn.edu.nju.apoc.mydb.AdsDB;
+
 /**
  * 
  * @author kivin
@@ -21,7 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/*")
 public class adverFilter implements Filter{
-
+	AdsDB db = new AdsDB();
+	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -39,7 +48,17 @@ public class adverFilter implements Filter{
 			String resBody = new String(resWrapper.toByteArray(),resWrapper.getCharacterEncoding());
 
 			if (resWrapper.getContentType().startsWith("text/html")) {
-				resBody = resBody.replaceAll("JSP", "SOPHIA");
+				Document document = Jsoup.parse(resBody);
+				Element head = document.select("head").first();
+				head.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/news.css\"/>");
+				
+				Element body = document.select("body").first();
+				@SuppressWarnings("deprecation")
+				ArrayList<Ads> list= db.getURLs(request.getRealPath("img/news"));
+				for(Ads ad:list){
+					body.append("<a href=\"" + ad.getUrl() + "\"><img class=\"left\" src=\"" + ad.getUri() + "\" /></a>");
+				}
+				resBody = document.html();
 				response.setContentLength(resBody.length());
 			}
 			PrintWriter writer = response.getWriter();
@@ -52,8 +71,6 @@ public class adverFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
