@@ -39,11 +39,10 @@ public class synonymDetector implements Filter {
 			String r = "";
 
 			for (String s : list) {
-				r += db.getSynonym(s);
+				r += db.getSynonym(s) + ";";
 			}
 
 			request.setAttribute("searchString", r);
-			System.out.println(r);
 		}
 		chain.doFilter(request, response);
 	}

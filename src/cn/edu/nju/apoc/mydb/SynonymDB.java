@@ -12,8 +12,8 @@ public class SynonymDB{
 		try{
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select i.word from synonyms s,synonyms_index i,synonyms_index ii where ii.word = "
-						+ str +" and s.id1 = ii.synoid and s.id2 = i.synoid");
+			ResultSet rs = stmt.executeQuery("select i.word from synonyms s,synonyms_index i,synonyms_index ii where ii.word = '"
+						+ str +"' and s.id1 = ii.synoid and s.id2 = i.synoid");
 			
 			if (rs.next()) {
 				str = rs.getString(1);

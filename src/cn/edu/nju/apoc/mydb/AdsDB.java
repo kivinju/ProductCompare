@@ -45,7 +45,7 @@ public class AdsDB{
 				int size = rs.getInt(1);
 				db.closeResultset(rs);
 				db.closeStatement(stmt);
-				for(int i = 0;i < 2;i ++){
+				while(list.size() < 2){
 					Statement s = con.createStatement();
 					ResultSet r = s.executeQuery("SELECT * FROM commercial_ads where adid =" + ((int)(Math.random()*size))+1);
 					if(r.next()){
