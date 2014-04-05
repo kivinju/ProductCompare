@@ -46,7 +46,7 @@ public class adverFilter implements Filter{
 		
 		if (resWrapper.getOutputType() == BufferedResponse.OT_WRITER) {
 			String resBody = new String(resWrapper.toByteArray(),resWrapper.getCharacterEncoding());
-			System.out.println(resBody);
+			
 			String contentType = resWrapper.getContentType(); 
 			if (contentType != null && contentType.startsWith("text/html")) {
 				Document document = Jsoup.parse(resBody);
@@ -61,8 +61,6 @@ public class adverFilter implements Filter{
 				body.append("<a href=\"" + list.get(1).getUrl() + "\"><img class=\"newsright\" src=\"" + list.get(1).getUri() + "\" /></a>");
 				
 				resBody = document.html();
-				System.out.println(resBody);
-				response.setContentLength(resBody.length());
 			}
 			PrintWriter writer = response.getWriter();
 			writer.println(resBody);
