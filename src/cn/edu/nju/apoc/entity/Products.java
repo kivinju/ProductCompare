@@ -14,12 +14,12 @@ public class Products extends AbstractProducts implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Products(String name, Integer price, String site, String img) {
+	public Products(String name, Integer price, String site, byte[] img) {
 		super(name, price, site, img);
 	}
 
 	/** full constructor */
-	public Products(String name, Integer price, String site, String img,
+	public Products(String name, Integer price, String site, byte[] img,
 			Set biddings, Set comments) {
 		super(name, price, site, img, biddings, comments);
 	}
