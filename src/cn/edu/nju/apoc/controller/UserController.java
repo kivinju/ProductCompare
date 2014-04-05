@@ -55,9 +55,9 @@ public class UserController {
 		List<Products> products;
 		if(pid!=null){
 			System.out.println(""+request.getParameter("pid"));
-			//products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
-			//model.addAttribute("products", products);
-			return "products/productInfo";
+			products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
+			model.addAttribute("products", products);
+			return "user/productInfo";
 		}
 		else{
 			response.sendRedirect("search");
