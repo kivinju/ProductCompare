@@ -14,7 +14,7 @@ import cn.edu.nju.apoc.entity.CommercialAds;
 import cn.edu.nju.apoc.helper.ImageIO;
 
 public class AdsDB{
-	private DB db = new DB();
+	private DB db = DB.getDB();
 	
 	public void addAds(){
 		byte[] img = new ImageIO().imread("/home/sky/1.jpg");
