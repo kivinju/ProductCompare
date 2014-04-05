@@ -73,9 +73,21 @@ public class SearchProductService {
 	}
 	
 	public List<Products> getSameNameProduct(int id){
-		Products p= productsDao.findById(id);
-		List<Products> plist = productsDao.findByName(p.getName());
-		return plist;
+		//Products p= productsDao.findById(id);
+		//List<Products> plist = productsDao.findByName(p.getName());
+		
+		List<Products> stub=new ArrayList<Products>();
+		Set bidding = new HashSet();
+		bidding.add("100");
+		Set comments = new HashSet();
+		comments.add("Good~");
+		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
+		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
+		p1.setPid(1);
+		p2.setPid(2);
+		stub.add(p1);
+		stub.add(p2);
+		return stub;
 	}
 	
 	public void addComment(int pid,String comment){

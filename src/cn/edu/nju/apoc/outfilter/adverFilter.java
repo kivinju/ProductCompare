@@ -46,7 +46,6 @@ public class adverFilter implements Filter{
 		
 		if (resWrapper.getOutputType() == BufferedResponse.OT_WRITER) {
 			String resBody = new String(resWrapper.toByteArray(),resWrapper.getCharacterEncoding());
-
 			if (resWrapper.getContentType().startsWith("text/html")) {
 				Document document = Jsoup.parse(resBody);
 				Element head = document.select("head").first();

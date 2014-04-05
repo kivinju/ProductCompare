@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		<p>
 		  			${product.img }
 		  		</p>
-		  		<c:forEach var="comment" items="${product.comments }">
+		  		<c:forEach var="comment" items="${product.commentses }">
 		  			<p>${comment }</p>
 		  		</c:forEach>
 		  		
