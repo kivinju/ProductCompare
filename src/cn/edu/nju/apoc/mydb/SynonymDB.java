@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SynonymDB{
-	private DB db = new DB();
+	private DB db = DB.getDB();
 	
 	public String getSynonym(String str) {
 		try{

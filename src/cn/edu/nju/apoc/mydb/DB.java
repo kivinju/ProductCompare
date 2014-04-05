@@ -13,8 +13,13 @@ import javax.sql.DataSource;
 public class DB{
 	private Context ctx = null;
 	private DataSource ds = null;
+	private static DB db;
 	
-	DB(){
+	public static DB getDB() {
+		return db == null?db = new DB():db;
+	}
+	
+	private DB(){
 		try {
 			ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/productDB");
