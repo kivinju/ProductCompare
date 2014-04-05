@@ -24,17 +24,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+ 
 	<table>
-		<c:forEach var="ip" items="iplist">
+		<c:forEach var="ip" items="${iplist}">
 			<tr>
-				<td>${ip.ip }</td>
-				<td><a href="manager/ip/delete">delete</a></td>
+				<td>${ip.ip}</td>
+				<td>
+				<form action="manager/ip/delete">
+				<input name="ip" type="hidden" value="${ip.ip}"/>
+  				<input type="submit" value="delete"/>
+				</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<form action="manager/ip/add">
-		<input type="text" />
-  		<input type="submit" value="submit"/>
+		<input name="ip" type="text" />
+  		<input type="submit" value="add"/>
 	</form>
   </body>
 </html>

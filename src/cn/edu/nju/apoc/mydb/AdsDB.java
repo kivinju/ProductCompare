@@ -10,22 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import cn.edu.nju.apoc.entity.Ads;
-import cn.edu.nju.apoc.entity.CommercialAds;
 import cn.edu.nju.apoc.helper.ImageIO;
 
 public class AdsDB{
 	private DB db = DB.getDB();
-	
-	public void addAds(){
-		byte[] img = new ImageIO().imread("/home/sky/1.jpg");
-		 
-        CommercialAds ad = new CommercialAds(); 
-        ad.setAdid(1);
-        ad.setContent(img);
-        ad.setMoney(100);
-        ad.setUrl("test");
-        
-	}
 	
 	public ArrayList<Ads> getURLs(String address) {
 		File file = new File(address);

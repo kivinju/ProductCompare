@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.edu.nju.apoc.entity.Products" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -25,18 +25,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<table>
-		<c:forEach var="bidding" items="biddinglist">
+		<c:forEach var="bidding" items="${biddinglist}">
 			<tr>
-				<td>${bidding.products.pid }</td>
-				<td>${bidding.money }</td>
-				<td><a href="manager/bidding/delete">delete</a></td>
+				<td>${bidding.products.pid}</td>
+				<td>${bidding.money}</td>
+				<td>
+				<form action="manager/bidding/delete">
+				<input name="pid" type="hidden" value="${bidding.products.pid}"/>
+				<input name="money" type="hidden" value="${bidding.money}"/>
+  				<input type="submit" value="delete"/>
+				</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<form action="manager/bidding/add">
-		pid:<input type="num" />
-		money:<input type="num" />
-  		<input type="submit" value="submit"/>
+		pid:<input name="pid" type="text" />
+		money:<input name="money" type="text" />
+  		<input type="submit" value="add"/>
 	</form>
   </body>
 </html>

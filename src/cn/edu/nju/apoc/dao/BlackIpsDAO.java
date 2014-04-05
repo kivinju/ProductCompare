@@ -31,10 +31,10 @@ public class BlackIpsDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	public void save(BlackIps transientInstance) {
+	public void save(BlackIps persistentInstance) {
 		log.debug("saving BlackIps instance");
 		try {
-			getHibernateTemplate().save(transientInstance);
+			getHibernateTemplate().save(persistentInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -49,6 +49,19 @@ public class BlackIpsDAO extends HibernateDaoSupport {
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
+	public void deleteByProperty(String propertyName, Object value) {
+		log.debug("deleting from BlackIps with property: " + propertyName
+				+ ", value: " + value);
+		try {
+			String queryString = "delete from BlackIps as model where model."
+					+ propertyName + "= ?";
+			getHibernateTemplate().bulkUpdate(queryString, value);
+		} catch (RuntimeException re) {
+			log.error("delete by property name failed", re);
 			throw re;
 		}
 	}

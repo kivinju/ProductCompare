@@ -1,6 +1,7 @@
 package cn.edu.nju.apoc.dao;
 
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.edu.nju.apoc.entity.Bidding;
+import cn.edu.nju.apoc.entity.Products;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -30,6 +32,7 @@ public class BiddingDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+	//TODO
 	public void save(Bidding transientInstance) {
 		log.debug("saving Bidding instance");
 		try {
@@ -48,6 +51,19 @@ public class BiddingDAO extends HibernateDaoSupport {
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
+	//TODO
+	public void deleteByProperty(String propertyName1, Object value1, String propertyName2, Object value2) {
+		log.debug("deleting from Bidding with property:");
+		try {
+			String queryString = "delete from Bidding as model where model."
+					+ propertyName1 + "= ? and model." + propertyName2 + "= ?";
+			getHibernateTemplate().bulkUpdate(queryString, value1, value2);
+		} catch (RuntimeException re) {
+			log.error("delete by property name failed", re);
 			throw re;
 		}
 	}
