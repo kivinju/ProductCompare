@@ -38,7 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  			${product.site }
 		  		</p>
 		  		<p>
-		  			${product.img }
+		  			  <img class="img-thumbnail" src="${product.url}" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
+
 		  		</p>
 		  		<c:forEach var="comment" items="${product.commentses }">
 		  			<p>${comment }</p>

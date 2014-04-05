@@ -1,5 +1,7 @@
 package cn.edu.nju.apoc.service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,26 +13,18 @@ import org.springframework.stereotype.Service;
 
 import cn.edu.nju.apoc.dao.ProductsDAO;
 import cn.edu.nju.apoc.entity.Products;
+import cn.edu.nju.apoc.entity.RealProduct;
+import cn.edu.nju.apoc.helper.ImageIO;
 
 @Service
 public class SearchProductService {
 	@Resource
 	ProductsDAO productsDao;
 	
-	public List<Products> searchProduct(String[] searchKey){
+	public List<RealProduct> searchProduct(String[] searchKey,String address){
 //		stub
-		List<Products> stub=new ArrayList<Products>();
-		Set bidding = new HashSet();
-		bidding.add("100");
-		Set comments = new HashSet();
-		comments.add("Good~");
-		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
-		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
-		p1.setPid(1);
-		p2.setPid(2);
-		stub.add(p1);
-		stub.add(p2);
-		return stub;
+		
+		return stub(address);
 		
 //		List<Products> result=new ArrayList<Products>();
 //		for(String key:searchKey){
@@ -44,21 +38,10 @@ public class SearchProductService {
 //		return result;
 	}
 	
-	public List<Products> searchProduct(){
+	public List<RealProduct> searchProduct(String address){
 //		stub
-		List<Products> stub=new ArrayList<Products>();
-		Set bidding = new HashSet();
-		bidding.add("100");
-		Set comments = new HashSet();
-		comments.add("Good~");
-		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
-		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
-		p1.setPid(1);
-		p2.setPid(2);
-		stub.add(p1);
-		stub.add(p2);
 		
-		return stub;
+		return stub(address);
 		
 //		List<Products> result=new ArrayList<Products>();
 //		for(String key:searchKey){
@@ -72,22 +55,12 @@ public class SearchProductService {
 //		return result;
 	}
 	
-	public List<Products> getSameNameProduct(int id){
+	public List<RealProduct> getSameNameProduct(int id,String address){
 		//Products p= productsDao.findById(id);
 		//List<Products> plist = productsDao.findByName(p.getName());
 		
-		List<Products> stub=new ArrayList<Products>();
-		Set bidding = new HashSet();
-		bidding.add("100");
-		Set comments = new HashSet();
-		comments.add("Good~");
-		Products p1 = new Products("Nike", 798, "www.taobao.com", "my image",comments,bidding);
-		Products p2 = new Products("Lining", 928, "www.taobao.com", "my image",comments,bidding);
-		p1.setPid(1);
-		p2.setPid(2);
-		stub.add(p1);
-		stub.add(p2);
-		return stub;
+		
+		return stub(address);
 	}
 	
 	public void addComment(int pid,String comment){
@@ -97,4 +70,28 @@ public class SearchProductService {
 		productsDao.save(p);
 	}
 	
+	private RealProduct parseProduct(Products p,String address){
+		
+		byte[] image =p.getImg();
+		String name = p.getPid() +p.getName()+ ".jpg";
+		String uri = address + "/" + name;
+		new ImageIO().imwrite(uri, image);
+		RealProduct rp = new RealProduct(p,uri);
+		return rp;
+	}
+	
+	private List<RealProduct> stub(String address){
+		List<RealProduct> stub=new ArrayList<RealProduct>();
+		Set bidding = new HashSet();
+		bidding.add("100");
+		Set comments = new HashSet();
+		comments.add("Good~");
+		Products p1 = new Products("Nike", 798, "www.taobao.com", null,comments,bidding);
+		Products p2 = new Products("Lining", 928, "www.taobao.com",null,comments,bidding);
+		p1.setPid(1);
+		p2.setPid(2);
+		stub.add(parseProduct(p1,address));
+		stub.add(parseProduct(p2,address));
+		return stub;
+	}
 }

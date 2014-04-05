@@ -66,7 +66,7 @@
 		<c:forEach var="product" items="${products}">
 			<div class="col-6 col-sm-6 col-lg-4">
               <h2><a href="#">${product.name}</a></h2>
-              <img class="img-thumbnail" src="img.jpg" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
+              <img class="img-thumbnail" src="${product.url}" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
               <p><a class="btn btn-default" href="user/productInfo?pid=${product.pid}">${product.name }</a></p>
            	  <p>Price:${product.price}</p>
 		      <p>From site:${product.site}	</p>

@@ -13,7 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.edu.nju.apoc.entity.Products;
+//import cn.edu.nju.apoc.entity.Products;
+import cn.edu.nju.apoc.entity.RealProduct;
 import cn.edu.nju.apoc.service.SearchProductService;
 
 @Controller
@@ -32,12 +33,13 @@ public class UserController {
 	public String searchProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
 		
 		String searchString = (String)request.getAttribute("searchString");
-		
+		String address = request.getRealPath("img/product");
 		String[] searchList = null;
-		List<Products> plist = productService.searchProduct();
+		
+		List<RealProduct> plist = productService.searchProduct(address);
 		if(searchString!=null&&!searchString.equals("")){
 			searchList = searchString.split(";");
-			plist = productService.searchProduct(searchList);
+			plist = productService.searchProduct(searchList,address);
 		}
 		model.addAttribute("products", plist);
 		return "user/searchResult";
@@ -52,10 +54,10 @@ public class UserController {
 	@RequestMapping("productInfo")
 	public String infoProduct(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) throws IOException {
 		String pid = request.getParameter("pid");
-		List<Products> products;
+		String address = request.getRealPath("img/product");
+		List<RealProduct> products;
 		if(pid!=null){
-			System.out.println(""+request.getParameter("pid"));
-			products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")));
+			products = productService.getSameNameProduct(Integer.parseInt(request.getParameter("pid")),address);
 			model.addAttribute("products", products);
 			return "user/productInfo";
 		}
