@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<ul>
-		<li><a href="manager/synonym">同义词管理</a></li>
+		<li><a href="manager/synonymmanage">同义词管理</a></li>
 		<li><a href="manager/ipmanage">IP管理</a></li>
 		<li><a href="manager/sensmanage">敏感词管理</a></li>
 		<li><a href="manager/watermanage">水军管理</a></li>

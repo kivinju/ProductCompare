@@ -24,21 +24,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<table>
-  		<tr>
-	  		<c:forEach var="syn" items="${synlist }">
-	  			<td>${syn.word }</td>
-	  			<c:forEach var="word" items="${syn.synonymsIndexesForId1 }">
-	  				<td>${word }</td>
-	  			</c:forEach>
-	  			<td><a href="manager/syn/delete">delete</a></td>
-	  		</c:forEach>
-  		</tr>
-  	</table>
-  	<form action="manager/syn/add">
-  		<input type="text" name="s1"/>
-  		<input type="text" name="s2"/>
-  		<input type="submit" value="submit"/>
+  
+	<table>
+		<c:forEach var="basesyn" items="${synonymlist}">
+			<c:forEach var="syn" items="${basesyn.list}">
+				<tr>
+					<td>${basesyn.word}</td>
+					<td>${syn.word}</td>
+					<td>
+					<form action="manager/syn/delete">
+  						<input name="id1" type="hidden" value="${basesyn.id}" />
+  						<input name="id2" type="hidden" value="${syn.id}" />
+  						<input type="submit" value="delete"/>
+  					</form>
+  					</td>
+				</tr>
+			</c:forEach>
+		</c:forEach>
+	</table>
+	
+	<form action="manager/syn/add">
+  		base word:<input name="word1" type="text" />
+  		synonym word:<input name="word2" type="text"/>
+  		<input type="submit" value="add"/>
   	</form>
+  	
   </body>
 </html>
