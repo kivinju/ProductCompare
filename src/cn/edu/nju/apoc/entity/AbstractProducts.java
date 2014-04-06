@@ -14,7 +14,7 @@ public abstract class AbstractProducts implements java.io.Serializable {
 
 	private Integer pid;
 	private String name;
-	private Integer price;
+	private double price;
 	private String site;
 	private byte[] img;
 	private Set biddings = new HashSet(0);
@@ -27,7 +27,7 @@ public abstract class AbstractProducts implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public AbstractProducts(String name, Integer price, String site, byte[] img) {
+	public AbstractProducts(String name, double price, String site, byte[] img) {
 		this.name = name;
 		this.price = price;
 		this.site = site;
@@ -35,7 +35,7 @@ public abstract class AbstractProducts implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractProducts(String name, Integer price, String site,
+	public AbstractProducts(String name, double price, String site,
 			byte[] img, Set biddings, Set commentses) {
 		this.name = name;
 		this.price = price;
@@ -63,11 +63,11 @@ public abstract class AbstractProducts implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Integer getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

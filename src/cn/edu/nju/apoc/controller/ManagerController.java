@@ -174,7 +174,8 @@ public class ManagerController {
 		int money = Integer.parseInt(request.getParameter("money"));
 		Bidding bidding = biddingService.addBidding(pid, money);
 		List<Bidding> biddinglist = (List<Bidding>)session.getAttribute("biddinglist");
-		biddinglist.add(bidding);
+		if (bidding != null)
+			biddinglist.add(bidding);
 		model.addAttribute("biddinglist", biddinglist);
 		return "manager/bidding";
 	}

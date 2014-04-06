@@ -10,6 +10,7 @@ import cn.edu.nju.apoc.dao.BiddingDAO;
 import cn.edu.nju.apoc.dao.ProductsDAO;
 import cn.edu.nju.apoc.entity.Bidding;
 import cn.edu.nju.apoc.entity.Products;
+import cn.edu.nju.apoc.mydb.BiddingDB;
 
 @Service
 public class BiddingService {
@@ -25,15 +26,13 @@ public class BiddingService {
 	}
 	
 	public Bidding addBidding(int pid,int money) {
-		Products products = productsDAO.findById(pid);
-		Bidding bidding = new Bidding(products,money);
-		biddingDAO.save(bidding);
-		return bidding;
+		BiddingDB db = new BiddingDB();
+		return db.addBidding(pid,money);
 	}
 	
 	public boolean deleteBidding(int pid,int money) {
-		Products products = productsDAO.findById(pid);
-		biddingDAO.deleteByProperty("products", products, "money", new Integer(money));
+		BiddingDB db = new BiddingDB();
+		db.deleteBidding(pid,money);
 		return true;
 	}
 
