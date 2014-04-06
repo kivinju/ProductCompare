@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+ xmlns:context="http://www.springframework.org/schema/context"  
+ xmlns:p="http://www.springframework.org/schema/p"  
+ xmlns:mvc="http://www.springframework.org/schema/mvc"  
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+xmlns:tx="http://www.springframework.org/schema/tx"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+      http://www.springframework.org/schema/tx 
+      http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"  >
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/financial_management">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/edu/nju/apoc/dao/Comments.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/WaterArmy.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/Bidding.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/Sensitives.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/CommercialAds.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/InterestWord.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/SynonymsIndex.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/Products.hbm.xml</value>
+				<value>cn/edu/nju/apoc/dao/BlackIps.hbm.xml</value></list>
+		</property></bean>
+	<bean id="CommentsDAO" class="cn.edu.nju.apoc.dao.CommentsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="WaterArmyDAO" class="cn.edu.nju.apoc.dao.WaterArmyDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BiddingDAO" class="cn.edu.nju.apoc.dao.BiddingDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SensitivesDAO"
+		class="cn.edu.nju.apoc.dao.SensitivesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CommercialAdsDAO"
+		class="cn.edu.nju.apoc.dao.CommercialAdsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="InterestWordDAO"
+		class="cn.edu.nju.apoc.dao.InterestWordDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SynonymsIndexDAO"
+		class="cn.edu.nju.apoc.dao.SynonymsIndexDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProductsDAO" class="cn.edu.nju.apoc.dao.ProductsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BlackIpsDAO" class="cn.edu.nju.apoc.dao.BlackIpsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 注解扫描包 -->
+	<context:component-scan base-package="cn.edu.nju.apoc" />
+	<!-- 开启注解 -->
+	
+	<mvc:annotation-driven/>
+	
+	<!-- 静态资源访问 -->
+	 <mvc:resources location="/img/" mapping="/img/**"/>  	
+	 <mvc:resources location="/js/" mapping="/js/**"/>   
+	 <mvc:resources location="/css/" mapping="/css/**"/>  
+	 <mvc:resources location="/jsp/" mapping="/jsp/**"/>   
+	
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+		
+		<bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+    <tx:annotation-driven transaction-manager="transactionManager" />  
+    
+</beans>
