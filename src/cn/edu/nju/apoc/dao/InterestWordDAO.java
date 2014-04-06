@@ -1,6 +1,7 @@
 package cn.edu.nju.apoc.dao;
 
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,19 @@ public class InterestWordDAO extends HibernateDaoSupport {
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
+	public void deleteByProperty(String propertyName1, Object value1, String propertyName2, Object value2) {
+		log.debug("deleting from InterestWord with property: " + propertyName1
+				+ ", value: " + value1 + " and " + propertyName2 + ", value: " + value2);
+		try {
+			String queryString = "delete from InterestWord as model where model."
+					+ propertyName1 + "= ?" + " and " + propertyName2 + "= ?";
+			getHibernateTemplate().bulkUpdate(queryString, value1, value2);
+		} catch (RuntimeException re) {
+			log.error("delete by property name failed", re);
 			throw re;
 		}
 	}

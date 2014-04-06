@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.apoc.entity.Bidding;
 import cn.edu.nju.apoc.entity.BlackIps;
+import cn.edu.nju.apoc.entity.InterestWord;
 import cn.edu.nju.apoc.entity.Sensitives;
 import cn.edu.nju.apoc.entity.Synonym;
+import cn.edu.nju.apoc.entity.WaterArmy;
+import cn.edu.nju.apoc.service.ArmyService;
 import cn.edu.nju.apoc.service.BiddingService;
+import cn.edu.nju.apoc.service.InterestService;
 import cn.edu.nju.apoc.service.IpService;
 import cn.edu.nju.apoc.service.SensitivesService;
 import cn.edu.nju.apoc.service.SynonymService;
@@ -38,7 +42,10 @@ public class ManagerController {
 	SensitivesService sensitivesService;
 	@Resource
 	SynonymService synonymService;
-	
+	@Resource
+	ArmyService armyService;
+	@Resource
+	InterestService interestService;
 	
 	
 	@RequestMapping("synonymmanage")
@@ -198,29 +205,76 @@ public class ManagerController {
 	
 	
 	
-	/**
-	 * 
-	 * @author xunan
-	 */
-	@RequestMapping("watermanage")
-	public String waterArmyManage() {
-		return null;
-	}
-	/**
-	 * 
-	 * @author xunan
-	 */
-	@RequestMapping("interestmanage")
-	public String interestWordManage() {
-		return null;
+	@RequestMapping("armymanage")
+	public String armyManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		List<WaterArmy> armylist = armyService.getAllArmys();
+		session.setAttribute("armylist", armylist);
+		model.addAttribute("armylist", armylist);
+		return "manager/waterarmy";
 	}
 	
-	/**
-	 * 
-	 * @author zhouhaibing
-	 */
-	@RequestMapping("crawlermanage")
-	public String crawlerManage() {
-		return null;
+	@RequestMapping("army/add")
+	public String armyAdd(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String ip = request.getParameter("ip");
+		WaterArmy waterArmy = new WaterArmy(ip);
+		armyService.addArmy(waterArmy);
+		List<WaterArmy> armylist = (List<WaterArmy>)session.getAttribute("armylist");
+		armylist.add(waterArmy);
+		model.addAttribute("armylist", armylist);
+		return "manager/waterarmy";
 	}
+	
+	@RequestMapping("army/delete")
+	public String armyDelete(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String ip = request.getParameter("ip");
+		armyService.deleteArmy(ip);
+		List<WaterArmy> armylist = (List<WaterArmy>)session.getAttribute("armylist");
+		for (int i=0;i<armylist.size();i++) {
+			if (armylist.get(i).getIp().equals(ip)) {
+				armylist.remove(i);
+				break;
+			}
+		}
+		model.addAttribute("armylist", armylist);
+		return "manager/waterarmy";
+	}
+	
+	
+	
+	@RequestMapping("interestmanage")
+	public String interestManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		List<InterestWord> interestlist = interestService.getAllInterestWords();
+		session.setAttribute("interestlist", interestlist);
+		model.addAttribute("interestlist", interestlist);
+		return "manager/interestword";
+	}
+	
+	@RequestMapping("interest/add")
+	public String interestAdd(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String word = request.getParameter("word");
+		String seller = request.getParameter("seller");
+		InterestWord interestWord = new InterestWord(word,seller);
+		interestService.addInterestWord(interestWord);
+		List<InterestWord> interestlist = (List<InterestWord>)session.getAttribute("interestlist");
+		interestlist.add(interestWord);
+		model.addAttribute("interestlist", interestlist);
+		return "manager/interestword";
+	}
+	
+	@RequestMapping("interest/delete")
+	public String interestDelete(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String word = request.getParameter("word");
+		String seller = request.getParameter("seller");
+		interestService.deleteInterestWord(word,seller);
+		List<InterestWord> interestlist = (List<InterestWord>)session.getAttribute("interestlist");
+		for (int i=0;i<interestlist.size();i++) {
+			if (interestlist.get(i).getWord().equals(word) && interestlist.get(i).getSeller().equals(seller)) {
+				interestlist.remove(i);
+				break;
+			}
+		}
+		model.addAttribute("interestlist", interestlist);
+		return "manager/interestword";
+	}
+	
 }
