@@ -16,6 +16,8 @@ local.properties
 .settings/
 .loadpath
 WebContent/WEB-INF/classes/
+WebContent/META-INF/context.xml
+src/applicationContext.xml
 
 # External tool builders
 .externalToolBuilders/
