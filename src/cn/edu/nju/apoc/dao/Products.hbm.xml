@@ -19,7 +19,7 @@
         <property name="site" type="java.lang.String">
             <column name="site" not-null="true" />
         </property>
-        <property name="img" type="java.lang.String">
+        <property name="img" type="binary">
             <column name="img" not-null="true" />
         </property>
         <set name="biddings" inverse="true">
