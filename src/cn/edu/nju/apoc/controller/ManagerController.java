@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.apoc.entity.Bidding;
 import cn.edu.nju.apoc.entity.BlackIps;
+import cn.edu.nju.apoc.entity.Sensitives;
 import cn.edu.nju.apoc.service.BiddingService;
 import cn.edu.nju.apoc.service.IpService;
+import cn.edu.nju.apoc.service.SensitivesService;
 
 /**
  * 
@@ -30,6 +32,8 @@ public class ManagerController {
 	IpService ipService;
 	@Resource
 	BiddingService biddingService;
+	@Resource
+	SensitivesService sensitivesService;
 	
 	@RequestMapping("ipmanage")
 	public String ipManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
@@ -64,6 +68,46 @@ public class ManagerController {
 		model.addAttribute("iplist", iplist);
 		return "manager/ip";
 	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping("sensmanage")
+	public String sensitiveWordManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		List<Sensitives> sensitiveslist = sensitivesService.getAllSensitives();
+		session.setAttribute("sensitiveslist", sensitiveslist);
+		model.addAttribute("sensitiveslist", sensitiveslist);
+		return "manager/senstiveword";
+	}
+	
+	@RequestMapping("sens/add")
+	public String sensitiveWordAdd(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String word = request.getParameter("word");
+		Sensitives sensitives = new Sensitives(word);
+		sensitivesService.addSensitives(sensitives);
+		List<Sensitives> sensitiveslist = (List<Sensitives>)session.getAttribute("sensitiveslist");
+		sensitiveslist.add(sensitives);
+		model.addAttribute("sensitiveslist", sensitiveslist);
+		return "manager/senstiveword";
+	}
+	
+	@RequestMapping("sens/delete")
+	public String sensitiveWordDelete(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		String word = request.getParameter("word");
+		sensitivesService.deleteSensitives(word);
+		List<Sensitives> sensitiveslist = (List<Sensitives>)session.getAttribute("sensitiveslist");
+		for (int i=0;i<sensitiveslist.size();i++) {
+			if (sensitiveslist.get(i).getWord().equals(word)) {
+				sensitiveslist.remove(i);
+				break;
+			}
+		}
+		model.addAttribute("sensitiveslist", sensitiveslist);
+		return "manager/senstiveword";
+	}
+	
 	
 	
 	
@@ -105,11 +149,6 @@ public class ManagerController {
 	
 	
 	
-	
-	@RequestMapping("sensmanage")
-	public String sensitiveWordManage() {
-		return null;
-	}
 	/**
 	 * 
 	 * @author xunan

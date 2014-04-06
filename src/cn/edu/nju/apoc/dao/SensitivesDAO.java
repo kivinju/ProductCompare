@@ -1,6 +1,7 @@
 package cn.edu.nju.apoc.dao;
 
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,19 @@ public class SensitivesDAO extends HibernateDaoSupport {
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
+	public void deleteByProperty(String propertyName, Object value) {
+		log.debug("deleting from Sensitives with property: " + propertyName
+				+ ", value: " + value);
+		try {
+			String queryString = "delete from Sensitives as model where model."
+					+ propertyName + "= ?";
+			getHibernateTemplate().bulkUpdate(queryString, value);
+		} catch (RuntimeException re) {
+			log.error("delete by property name failed", re);
 			throw re;
 		}
 	}

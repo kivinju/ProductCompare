@@ -29,8 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<li><a href="manager/sensmanage">敏感词管理</a></li>
 		<li><a href="manager/watermanage">水军管理</a></li>
 		<li><a href="manager/interestmanage">商家感兴趣词管理</a></li>
-		<li><a href="manager/rankmanage">竞价排名管理</a></li>
-		<li><a href="manager/crawlermanage">爬虫管理</a></li>
+		<li><a href="manager/biddingmanage">竞价排名管理</a></li>
   	</ul>
   </body>
 </html>

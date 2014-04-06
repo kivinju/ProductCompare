@@ -25,16 +25,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<table>
-		<c:forEach var="sens" items="senslist">
+		<c:forEach var="sens" items="${sensitiveslist}">
 			<tr>
-				<td>${sens.word }</td>
-				<td><a href="manager/sens/delete">delete</a></td>
+				<td>${sens.word}</td>
+				<td>
+				<form action="manager/sens/delete">
+				<input name="word" type="hidden" value="${sens.word}"/>
+  				<input type="submit" value="delete"/>
+				</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<form action="manager/sens/add">
-		<input type="text" />
-  		<input type="submit" value="submit"/>
+		<input name="word" type="text" />
+  		<input type="submit" value="add"/>
 	</form>
   </body>
 </html>
