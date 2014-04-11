@@ -29,7 +29,7 @@ public class AdsDB {
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("SELECT count(*) FROM commercial_ads");
+					.executeQuery("SELECT max(adid) FROM commercial_ads");
 
 			if (rs.next()) {
 				int size = rs.getInt(1);

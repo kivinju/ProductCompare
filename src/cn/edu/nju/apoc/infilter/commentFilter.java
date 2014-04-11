@@ -16,7 +16,6 @@ import cn.edu.nju.apoc.mydb.CommentDB;
 
 /**
  * @creator kivin
- * @author xunan there works: 1,sensitive words 2,ˮ�� 3,����̼Ҹ���Ȥ�Ĺؼ�ʼ��
  */
 @WebFilter("/user/comment")
 public class commentFilter implements Filter {
