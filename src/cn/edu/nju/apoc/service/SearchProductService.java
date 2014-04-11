@@ -3,6 +3,8 @@ package cn.edu.nju.apoc.service;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,58 +26,77 @@ public class SearchProductService {
 	public List<RealProduct> searchProduct(String[] searchKey,String address){
 //		stub
 		
-		return stub(address);
+	//	return stub(address);
 		
-//		List<Products> result=new ArrayList<Products>();
-//		for(String key:searchKey){
-//			List<Products> tmp=productsDao.findByName(key);
-//			if(tmp!=null){
-//				for(Products p:tmp)
-//					result.add(p);
-//			}
-//			
-//		}
-//		return result;
+		List<RealProduct> result=new ArrayList<RealProduct>();
+		for(String key:searchKey){
+			List<Products> tmp = productsDao.findByLikeName(key);
+			//stub
+//			tmp.add(productsDao.findById(2));
+			
+			
+			if(tmp!=null){
+				Collections.sort(tmp);
+				for(Products p:tmp){
+					RealProduct rp = parseProduct(p,address);
+					result.add(rp);
+				}
+			}
+			
+		}
+		return result;
 	}
 	
 	public List<RealProduct> searchProduct(String address){
 //		stub
 		
-		return stub(address);
+//		return stub(address);
 		
-//		List<Products> result=new ArrayList<Products>();
-//		for(String key:searchKey){
-//			List<Products> tmp=productsDao.findByName(key);
-//			if(tmp!=null){
-//				for(Products p:tmp)
-//					result.add(p);
-//			}
-//			
-//		}
-//		return result;
+		List<RealProduct> result=new ArrayList<RealProduct>();
+		List<Products> tmp= new ArrayList<Products>();//productsDao.findByName(key);
+		
+		/*
+		for(int i = 0;i<20;i++){
+			tmp.addAll((List<Products>) productsDao.findById(i));
+			
+		}
+		if(tmp!=null){
+			for(Products p:tmp){
+				RealProduct rp = parseProduct(p,address);
+				result.add(rp);
+			}
+		}
+		*/
+		return result;
 	}
 	
 	public List<RealProduct> getSameNameProduct(int id,String address){
-		//Products p= productsDao.findById(id);
-		//List<Products> plist = productsDao.findByName(p.getName());
+		Products p= productsDao.findById(id);
+		List<RealProduct> result=new ArrayList<RealProduct>();
+		List<Products> plist = productsDao.findByName(p.getName());
 		
 		
-		return stub(address);
+		
+		if(plist!=null){
+			Collections.sort(plist);
+			for(Products product:plist){
+				RealProduct rp = parseProduct(product,address);
+				result.add(rp);
+			}
+		}
+		
+		return result;
 	}
 	
-	public void addComment(int pid,String comment){
-		Products p= productsDao.findById(pid);
-		Set comments = p.getCommentses();
-		comments.add(comment);
-		productsDao.save(p);
-	}
+	
 	
 	private RealProduct parseProduct(Products p,String address){
 		
 		byte[] image =p.getImg();
-		String name = p.getPid() +p.getName()+ ".jpg";
+		String name = p.getPid()+ ".jpg";
 		String uri = address + "/" + name;
 		new ImageIO().imwrite(uri, image);
+		uri = "img/"+name;
 		RealProduct rp = new RealProduct(p,uri);
 		return rp;
 	}

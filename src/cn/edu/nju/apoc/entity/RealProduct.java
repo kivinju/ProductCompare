@@ -4,7 +4,8 @@ public class RealProduct extends Products{
 	private String url;
 	
 	public RealProduct(Products p, String url) {
-		super(p.getName(),p.getPrice(),p.getSite(),p.getImg(),p.getBiddings(),p.getCommentses());		
+		super(p.getName(),p.getPrice(),p.getSite(),p.getImg(),p.getBiddings(),p.getCommentses());
+		setPid(p.getPid());
 		this.url = url;
 	}
 	public String getUrl() {
@@ -15,3 +16,4 @@ public class RealProduct extends Products{
 	}
 	
 }
+

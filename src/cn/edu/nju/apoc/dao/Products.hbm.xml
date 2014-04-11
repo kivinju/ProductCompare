@@ -13,7 +13,7 @@
         <property name="name" type="java.lang.String">
             <column name="name" not-null="true" />
         </property>
-        <property name="price" type="java.lang.Integer">
+        <property name="price" type="java.lang.Double">
             <column name="price" not-null="true" />
         </property>
         <property name="site" type="java.lang.String">
@@ -22,13 +22,13 @@
         <property name="img" type="binary">
             <column name="img" not-null="true" />
         </property>
-        <set name="biddings" inverse="true">
+        <set name="biddings" inverse="true" lazy="false">
             <key>
                 <column name="pid" not-null="true" />
             </key>
             <one-to-many class="cn.edu.nju.apoc.entity.Bidding" />
         </set>
-        <set name="commentses" inverse="true">
+        <set name="commentses" inverse="true" lazy="false">
             <key>
                 <column name="pid" not-null="true" />
             </key>

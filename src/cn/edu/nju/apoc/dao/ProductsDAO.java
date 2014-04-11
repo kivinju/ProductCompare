@@ -61,7 +61,7 @@ public class ProductsDAO extends HibernateDaoSupport {
 		log.debug("getting Products instance with id: " + id);
 		try {
 			Products instance = (Products) getHibernateTemplate().get(
-					"cn.edu.nju.apoc.dao.Products", id);
+					"cn.edu.nju.apoc.entity.Products", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -99,6 +99,11 @@ public class ProductsDAO extends HibernateDaoSupport {
 		return findByProperty(NAME, name);
 	}
 
+	public List findByLikeName(Object name) {
+		String queryString = "from Products as model where model.name like ?";
+		return getHibernateTemplate().find(queryString, "%"+name+"%");
+	}
+	
 	public List findByPrice(Object price) {
 		return findByProperty(PRICE, price);
 	}

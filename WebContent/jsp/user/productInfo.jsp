@@ -42,11 +42,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		  		</p>
 		  		<c:forEach var="comment" items="${product.commentses }">
-		  			<p>${comment }</p>
+		  			<p>${comment.comments }</p>
 		  		</c:forEach>
 		  		
-		  		<form action="user/comment?pid=${product.pid}">
-  					Comment:<textarea type="text" value="name" name="comment"></textarea>
+		  		<form action="user/comment" method="POST">
+		  			<input type="hidden" name="pid" value="${product.pid}" />
+  					Comment:<textarea type="text" value="name" name="comment" ></textarea>
   					<input type="submit" value="submit">
   				</form>
 		  	</c:forEach>
