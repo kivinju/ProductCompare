@@ -22,6 +22,10 @@ import cn.edu.nju.apoc.service.SearchProductService;
 public class UserController {
 	@Resource
 	SearchProductService productService;
+	@RequestMapping("index")
+	public String index(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
+		return "user/index";
+	}
 	
 	/**
 	 * 

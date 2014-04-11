@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<form action="user/search">
-		search:<input type="text">
+		search:<input type="text" name="searchString">
 		<input type="submit" value="submit"/>
 	</form>
   </body>
