@@ -1,20 +1,11 @@
 package cn.edu.nju.apoc.entity;
 
-public class RealProduct {
-	private Products p;
+public class RealProduct extends Products{
 	private String url;
 	
 	public RealProduct(Products p, String url) {
-		super();
-		this.p = p;
+		super(p.getName(),p.getPrice(),p.getSite(),p.getImg(),p.getBiddings(),p.getCommentses());		
 		this.url = url;
-	}
-	
-	public Products getProduct() {
-		return p;
-	}
-	public void setProduct(Products p) {
-		this.p = p;
 	}
 	public String getUrl() {
 		return url;
