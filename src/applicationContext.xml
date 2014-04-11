@@ -23,7 +23,7 @@ xmlns:tx="http://www.springframework.org/schema/tx"
 			value="jdbc:mysql://localhost:3306/financial_management">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="123456"></property>
+		<property name="password" value="sky"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

@@ -1,9 +1,13 @@
 .newsleft{
-	width:100;
-	height:200;
+	position:fixed;
+	left:24px;
+	top:100px;
+	width:20%;
 }
 
 .newsright{
-	width:100;
-	height:200;
+	position:fixed;
+	right:24px;
+	top:100px;
+	width:20%;
 }
