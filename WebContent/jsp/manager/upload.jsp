@@ -63,16 +63,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
     </ul>
 	</div>
+	<div id="container">
 	<form action="manager/fileUpload" method="post" enctype="multipart/form-data">
 		<input type="file" name="fileUpload" label="广告"/>
 		money:<input type="text" name="money"/>
 		url:<input type="text" name="url"/>
 		<input type="submit" value="上传" />
 	</form>
+	</div>
 	<div id="footer">
     <span id="author">
         <span class="cn">&copy; 南京大学软件学院</span>
     </span>
+    
 </div>
 </body>
 </html>

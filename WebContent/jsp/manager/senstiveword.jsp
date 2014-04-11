@@ -72,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
     </ul>
 	</div>
+	<div id="container">
 	<table>
 		<c:forEach var="sens" items="${sensitiveslist}">
 			<tr>
@@ -89,6 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<input name="word" type="text" />
   		<input type="submit" value="add"/>
 	</form>
+	</div>
 	<%@include file="../footer.jsp"%>
   </body>
 </html>
