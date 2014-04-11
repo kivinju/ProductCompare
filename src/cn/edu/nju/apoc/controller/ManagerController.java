@@ -47,6 +47,10 @@ public class ManagerController {
 	@Resource
 	InterestService interestService;
 	
+	@RequestMapping("index")
+	public String indexManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
+		return "manager/index";
+	}
 	
 	@RequestMapping("synonymmanage")
 	public String synonymManage(HttpServletRequest request,Model model,HttpServletResponse response,HttpSession session) {
