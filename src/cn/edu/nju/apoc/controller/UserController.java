@@ -48,7 +48,7 @@ public class UserController {
 			plist = productService.searchProduct(searchList,address);
 		}
 		if (plist.size()==0) {
-			plist=productService.getProducts(9);
+			plist=productService.getProducts(9,address);
 		}
 		model.addAttribute("products", plist);
 		return "user/searchResult";

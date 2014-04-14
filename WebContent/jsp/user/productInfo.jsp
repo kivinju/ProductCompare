@@ -70,7 +70,9 @@
 
 						<div class="comment">
 							<c:forEach var="comment" items="${product.commentses }">
+							<p>ip: ${comment.ip } 时间:${comment.createtime }</p>
 								<p class="item">${comment.comments }</p>
+								<br />
 							</c:forEach>
 
 							<form action="user/comment" method="POST">

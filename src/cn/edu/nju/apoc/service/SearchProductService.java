@@ -47,13 +47,18 @@ public class SearchProductService {
 		return result;
 	}
 	
-	public List<RealProduct> getProducts(int num){
+	public List<RealProduct> getProducts(int num,String address){
 //		stub
 		
 	//	return stub(address);
-		
 		List<RealProduct> result=new ArrayList<RealProduct>();
-		result=productsDao.findSome(num);
+		
+		List<Products> temp=new ArrayList<Products>();
+		temp=productsDao.findSome(num);
+		for (Products p : temp) {
+			RealProduct rp = parseProduct(p,address);
+			result.add(rp);
+		}
 		return result;
 	}
 	
