@@ -42,7 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		  		</p>
 		  		<c:forEach var="comment" items="${product.commentses }">
+		  		<p>ip: ${comment.ip } 时间:${comment.createtime }</p>
 		  			<p>${comment.comments }</p>
+		  			<br>
 		  		</c:forEach>
 		  		
 		  		<form action="user/comment" method="POST">
