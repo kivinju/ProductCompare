@@ -29,11 +29,6 @@ public class UserController {
 	@Resource
 	CommentService commentService;
 	
-	@RequestMapping("index")
-	public String index(HttpServletRequest request,HttpServletResponse response, Model model, HttpSession session) {
-		return "user/index";
-	}
-	
 	/**
 	 * 
 	 * @author yanning + ss
@@ -51,6 +46,9 @@ public class UserController {
 		if(searchString!=null&&!searchString.equals("")){
 			searchList = searchString.split(";");
 			plist = productService.searchProduct(searchList,address);
+		}
+		if (plist.size()==0) {
+			plist=productService.getProducts(9);
 		}
 		model.addAttribute("products", plist);
 		return "user/searchResult";

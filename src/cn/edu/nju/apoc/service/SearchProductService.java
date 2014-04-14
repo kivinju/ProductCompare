@@ -47,6 +47,16 @@ public class SearchProductService {
 		return result;
 	}
 	
+	public List<RealProduct> getProducts(int num){
+//		stub
+		
+	//	return stub(address);
+		
+		List<RealProduct> result=new ArrayList<RealProduct>();
+		result=productsDao.findSome(num);
+		return result;
+	}
+	
 	public List<RealProduct> searchProduct(String address){
 //		stub
 		

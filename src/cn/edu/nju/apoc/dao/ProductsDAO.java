@@ -1,11 +1,17 @@
 package cn.edu.nju.apoc.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.edu.nju.apoc.entity.Products;
@@ -126,7 +132,21 @@ public class ProductsDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-
+	public List findSome(final int num) {
+		final String hql = "from Products";
+		return getHibernateTemplate().executeFind(new HibernateCallback() {
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				final Query query = session.createQuery(hql);
+			    query.setMaxResults(num);
+			    query.setFirstResult(1);    
+			    return query.list();
+			}
+		});
+	}
+	
 	public Products merge(Products detachedInstance) {
 		log.debug("merging Products instance");
 		try {

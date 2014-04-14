@@ -27,7 +27,7 @@ import cn.edu.nju.apoc.mydb.AdsDB;
  *
  */
 
-@WebFilter("/user/*")
+@WebFilter("/user/hgkhgkgkj/s")
 public class adverFilter implements Filter{
 	AdsDB db = new AdsDB();
 	

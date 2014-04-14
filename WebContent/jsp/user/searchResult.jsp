@@ -19,6 +19,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/user.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="css/starter-template.css" rel="stylesheet">
@@ -33,13 +34,11 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="user/search">Product Compare</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li class="active"><a href="user/search">Search</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -47,29 +46,21 @@
 	</div>
 
 	<div class="container">
-
-		<div class="row">
-		
-		<form  name="searchform" action="user/search" >
-			<div class="col-md-8"></div>
-			<div class="col-md-2">
-				<input type="text" name="searchString" class="form-control" placeholder="Search"
-					autofocus>
-			</div>
-			<div class="col-md-1">
+	
+		<div id="searchbar">
+			<form  name="searchform" action="user/search" >
+				<input type="text" name="searchString" class="form-control" placeholder="Search" autofocus>
 				<button type="submit" class="btn btn-primary btn-sm">Search</button>
-			</div>
-
-		</form>>
+			</form>
 		</div>
+
 		<div class="row">
 		<c:forEach var="product" items="${products}">
-			<div class="col-6 col-sm-6 col-lg-4">
-              <h2><a href="user/productInfo?pid=${product.pid}">${product.name}</a></h2>
+			<div class="product-item col-6 col-sm-6 col-lg-4">
+              <p class="product-title"><a href="user/productInfo?pid=${product.pid}">${product.name}</a></p>
               <img class="img-thumbnail" src="${product.url}" data-src="holder.js/400x400/auto" alt="Generic placeholder image"width="250" height="250">
               <p><a class="btn btn-default" href="user/productInfo?pid=${product.pid}">${product.name }</a></p>
-           	  <p>Price:${product.price}</p>
-		      <p>From site:${product.site}	</p>
+           	  <p class="price"><span class="yuan">&#65509;</span>${product.price}</p>
             </div><!--/span-->
            </c:forEach>
 		</div>
@@ -77,6 +68,11 @@
 	</div>
 	<!-- /.container -->
 	
+	<div id="footer">
+	    <span id="author">
+	        <span class="cn">&copy; 南京大学软件学院</span>
+	    </span>
+	</div>
 
 </body>
 </html>
